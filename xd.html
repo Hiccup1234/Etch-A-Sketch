@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Grid of Square Divs with Hover Effect</title>
+    <style>
+         body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(16, 1fr);
+            grid-template-rows: repeat(16, 1fr);
+            gap: 2px;
+            width: 400px;
+            height: 400px;
+        }
+
+        .grid-item {
+            background-color: #000;
+            transition: background-color 0.3s;
+        }
+
+        .grid-item-hover {
+            background-color: #f00;
+        }
+        .buttoni {
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="buttoni">Hello</button>
+    <div class="grid-container"></div>
+
+    <script>
+        // Create the grid
+        const gridContainer = document.querySelector('.grid-container');
+
+        for (let i = 0; i < 16; i++) {
+            for (let j = 0; j < 16; j++) {
+                const gridItem = document.createElement('div');
+                gridItem.classList.add('grid-item');
+                gridItem.addEventListener('mouseover', function () {
+                    gridItem.style.backgroundColor = '#00f';
+                });
+                gridContainer.appendChild(gridItem);
+            }
+        }
+        const buttoni = document.querySelector('.buttoni');
+        buttoni.addEventListener('click', function () {
+                const userInput = prompt("Please enter the number of squares per side for the new grid (max 100):");
+
+                if (userInput) {
+                    const gridSize = parseInt(userInput);
+
+                    if (!isNaN(gridSize) && gridSize > 0 && gridSize <= 100) {
+                        gridContainer.innerHTML = '';
+
+                        for (let i = 0; i < gridSize; i++) {
+                            for (let j = 0; j < gridSize; j++) {
+                                const gridItem = document.createElement('div');
+                                gridItem.classList.add('grid-item');
+                                gridItem.addEventListener('mouseover', function () {
+                                    gridItem.style.backgroundColor = '#00f';
+                                });
+                                gridContainer.appendChild(gridItem);
+                            }
+                        }
+                    } else {
+                        alert('Invalid input. Please enter a number between 1 and 100.');
+                    }
+                }
+            });
+    </script>
+</body>
+
+</html>
